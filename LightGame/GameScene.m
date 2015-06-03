@@ -1,10 +1,12 @@
 #import "GameScene.h"
 #import "RunnerNode.h"
+#import "WallNode.h"
 
 @implementation GameScene
 
 - (void)didMoveToView:(SKView *)view {
     self.backgroundColor = [UIColor blackColor];
+    self.physicsWorld.gravity = CGVectorMake(0, 0);
 
     RunnerNode *runner = [RunnerNode create];
     runner.name = @"runner";
@@ -12,7 +14,9 @@
     [self addChild:runner];
     [runner applyImpulseForDirection];
 
-    self.physicsWorld.gravity = CGVectorMake(0, 0);
+    WallNode *wall = [WallNode createWithSize:CGSizeMake(self.size.width, 10)];
+    wall.position = CGPointMake(self.size.width / 2, self.size.height - 100);
+    [self addChild:wall];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

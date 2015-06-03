@@ -1,17 +1,20 @@
 #import "RunnerNode.h"
+#import "CGPathRefHelper.h"
 
 @implementation RunnerNode
 
 + (RunnerNode *)create {
     RunnerNode *node = [self node];
-    node.currentSpeed = 0.1;
+    node.currentSpeed = 0.7;
     node.direction = NORTH;
 
     CGSize size = CGSizeMake(10, 10);
-    SKShapeNode *body = [SKShapeNode shapeNodeWithRectOfSize:size];
+    SKShapeNode *body = [SKShapeNode shapeNodeWithPath:[CGPathRefHelper pathForTriangleOfSize:size]];
     [body setFillColor:[UIColor whiteColor]];
     [node addChild:body];
     [node setPhysicsBody:[SKPhysicsBody bodyWithRectangleOfSize:size]];
+    node.physicsBody.linearDamping = 0;
+    node.physicsBody.angularDamping = 0;
     return node;
 }
 
@@ -50,10 +53,12 @@
 
 - (void)turnRight {
     [self moveForwardInDirection:1];
+    self.zRotation = (CGFloat) (self.zRotation - M_PI / 2);
 }
 
 - (void)turnLeft {
     [self moveForwardInDirection:-1];
+    self.zRotation = (CGFloat) (self.zRotation + M_PI / 2);
 }
 
 @end
