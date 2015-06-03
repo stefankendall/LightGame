@@ -6,7 +6,7 @@
 
 + (RunnerNode *)create {
     RunnerNode *node = [self node];
-    node.currentSpeed = 0.7;
+    node.currentSpeed = 0.4;
     node.direction = NORTH;
 
     CGSize size = CGSizeMake(10, 10);
@@ -65,6 +65,10 @@
 - (void)turnLeft {
     [self moveForwardInDirection:-1];
     self.zRotation = (CGFloat) (self.zRotation + M_PI / 2);
+}
+
+- (void)stop {
+    self.physicsBody.velocity = CGVectorMake(0, 0);
 }
 
 @end

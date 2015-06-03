@@ -16,4 +16,6 @@
 - (void)turnRight;
 
 - (void)turnLeft;
+
+- (void)stop;
 @end
