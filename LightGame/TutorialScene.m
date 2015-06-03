@@ -1,8 +1,8 @@
-#import "GameScene.h"
+#import "TutorialScene.h"
 #import "RunnerNode.h"
 #import "WallNode.h"
 
-@implementation GameScene
+@implementation TutorialScene
 
 - (void)didMoveToView:(SKView *)view {
     self.backgroundColor = [UIColor blackColor];
@@ -14,9 +14,22 @@
     [self addChild:runner];
     [runner applyImpulseForDirection];
 
-    WallNode *wall = [WallNode createWithSize:CGSizeMake(self.size.width, 10)];
-    wall.position = CGPointMake(self.size.width / 2, self.size.height - 100);
+    int wallHeight = 10;
+    WallNode *wall = [WallNode createWithSize:CGSizeMake(self.size.width, wallHeight)];
+    CGFloat wallYPosition = self.size.height - 100;
+    wall.position = CGPointMake(self.size.width / 2, wallYPosition);
     [self addChild:wall];
+
+    SKLabelNode *warning = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+    [warning setFontSize:14];
+    [warning setText:@"DO NOT TOUCH"];
+    warning.position = CGPointMake(self.size.width / 2, wallYPosition + wallHeight + 10);
+    [warning setAlpha:0.1];
+    [warning runAction:[SKAction repeatActionForever:[SKAction sequence:@[
+            [SKAction fadeAlphaTo:1 duration:6],
+            [SKAction fadeAlphaTo:0.3 duration:5]
+    ]]]];
+    [self addChild:warning];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

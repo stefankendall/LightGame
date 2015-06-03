@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		028DFE901B1E90E400759053 /* font.xib in Resources */ = {isa = PBXBuildFile; fileRef = 028DFE8F1B1E90E400759053 /* font.xib */; };
 		5459007FB8346EFE87CD6B27 /* LightGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 545905159D121708EF93CAFF /* LightGameTests.m */; };
 		54590153167F6EC6F2F5692B /* CGPathRefHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5459000EFF3A53543E53A9D4 /* CGPathRefHelper.m */; };
 		545901B5C524CDAF7A1E3060 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5459071C7EC526DBFC56623E /* AppDelegate.m */; };
 		545903805EFB3C765937EEC2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54590960D6E63E4753EC7D2C /* LaunchScreen.xib */; };
 		545906EDC4383B9E9F0747D8 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 545906823E4A6F376B6C040A /* GameViewController.m */; };
 		545907993E5B1FD2EC387B99 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54590D96F7E0E62734061CAF /* Images.xcassets */; };
-		5459086CDF5FFD6255214FF5 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54590BE4C284060F33033839 /* GameScene.m */; };
+		5459086CDF5FFD6255214FF5 /* TutorialScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54590BE4C284060F33033839 /* TutorialScene.m */; };
 		54590879CC6878303E2AC33B /* RunnerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 54590733723A5662D5C530EA /* RunnerNode.m */; };
 		545908BF011CBB516F091CF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 545901755FA27ED0B1660A47 /* main.m */; };
 		545909214DC93A4B16F81901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 545908F4D7187B35A3CB2F50 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		028DFE8F1B1E90E400759053 /* font.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = font.xib; sourceTree = "<group>"; };
 		5459000EFF3A53543E53A9D4 /* CGPathRefHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPathRefHelper.m; sourceTree = "<group>"; };
 		545900D5C62A69EB03B5F6A1 /* LightGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		545901755FA27ED0B1660A47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -45,9 +47,9 @@
 		545906823E4A6F376B6C040A /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		5459071C7EC526DBFC56623E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		54590733723A5662D5C530EA /* RunnerNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunnerNode.m; sourceTree = "<group>"; };
-		545908F2AEF524BB2A4F7086 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		545908F2AEF524BB2A4F7086 /* TutorialScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TutorialScene.h; sourceTree = "<group>"; };
 		54590B910F9FFB792E333420 /* LightGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		54590BE4C284060F33033839 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		54590BE4C284060F33033839 /* TutorialScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TutorialScene.m; sourceTree = "<group>"; };
 		54590C2E1FFBC472C6B92150 /* WallNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallNode.m; sourceTree = "<group>"; };
 		54590CC7C0128392C9195F9B /* CGPathRefHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPathRefHelper.h; sourceTree = "<group>"; };
 		54590CEC05740B4E6306F74C /* WallNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallNode.h; sourceTree = "<group>"; };
@@ -138,12 +140,13 @@
 				5459040AAA3DE0FFA1A943A9 /* AppDelegate.h */,
 				5459071C7EC526DBFC56623E /* AppDelegate.m */,
 				545908F4D7187B35A3CB2F50 /* Main.storyboard */,
-				545908F2AEF524BB2A4F7086 /* GameScene.h */,
-				54590BE4C284060F33033839 /* GameScene.m */,
+				545908F2AEF524BB2A4F7086 /* TutorialScene.h */,
+				54590BE4C284060F33033839 /* TutorialScene.m */,
 				5459064D452DD2658A6F8067 /* GameViewController.h */,
 				545906823E4A6F376B6C040A /* GameViewController.m */,
 				545907CEFE47DA4C7B464B67 /* Nodes */,
 				54590F8D0479C08D922ADD38 /* Helper */,
+				028DFE8F1B1E90E400759053 /* font.xib */,
 			);
 			path = LightGame;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				028DFE901B1E90E400759053 /* font.xib in Resources */,
 				545907993E5B1FD2EC387B99 /* Images.xcassets in Resources */,
 				545903805EFB3C765937EEC2 /* LaunchScreen.xib in Resources */,
 				545909214DC93A4B16F81901 /* Main.storyboard in Resources */,
@@ -256,7 +260,7 @@
 			files = (
 				545908BF011CBB516F091CF3 /* main.m in Sources */,
 				545901B5C524CDAF7A1E3060 /* AppDelegate.m in Sources */,
-				5459086CDF5FFD6255214FF5 /* GameScene.m in Sources */,
+				5459086CDF5FFD6255214FF5 /* TutorialScene.m in Sources */,
 				545906EDC4383B9E9F0747D8 /* GameViewController.m in Sources */,
 				54590879CC6878303E2AC33B /* RunnerNode.m in Sources */,
 				54590BEF0C2388B98CDF191C /* WallNode.m in Sources */,
@@ -434,6 +438,7 @@
 				545908BCD39FD326EABBB652 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		54590D47ADDA9310A2BDFC5F /* Build configuration list for PBXNativeTarget "LightGameTests" */ = {
 			isa = XCConfigurationList;
@@ -442,6 +447,7 @@
 				5459028CF95A4E2290D3947E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		54590D967CE2E25B85C9A1FC /* Build configuration list for PBXProject "LightGame" */ = {
 			isa = XCConfigurationList;
