@@ -7,6 +7,7 @@
 - (void)didMoveToView:(SKView *)view {
     self.backgroundColor = [UIColor blackColor];
     self.physicsWorld.gravity = CGVectorMake(0, 0);
+    [self.physicsWorld setContactDelegate:self];
 
     RunnerNode *runner = [RunnerNode create];
     runner.name = @"runner";
@@ -45,6 +46,10 @@
 }
 
 - (void)update:(CFTimeInterval)currentTime {
+}
+
+- (void)didBeginContact:(SKPhysicsContact *)contact {
+    NSLog(@"%@ %@", contact.bodyA.node.name, contact.bodyB.node.name);
 }
 
 @end

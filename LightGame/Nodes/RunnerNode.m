@@ -1,5 +1,6 @@
 #import "RunnerNode.h"
 #import "CGPathRefHelper.h"
+#import "ContactCategories.h"
 
 @implementation RunnerNode
 
@@ -9,12 +10,17 @@
     node.direction = NORTH;
 
     CGSize size = CGSizeMake(10, 10);
-    SKShapeNode *body = [SKShapeNode shapeNodeWithPath:[CGPathRefHelper pathForTriangleOfSize:size]];
+    CGPathRef path = [CGPathRefHelper pathForTriangleOfSize:size];
+    SKShapeNode *body = [SKShapeNode shapeNodeWithPath:path];
     [body setFillColor:[UIColor whiteColor]];
     [node addChild:body];
-    [node setPhysicsBody:[SKPhysicsBody bodyWithRectangleOfSize:size]];
+    [node setPhysicsBody:[SKPhysicsBody bodyWithPolygonFromPath:path]];
     node.physicsBody.linearDamping = 0;
     node.physicsBody.angularDamping = 0;
+
+    node.physicsBody.categoryBitMask = ContactRunner;
+    node.physicsBody.contactTestBitMask = ContactWall;
+
     return node;
 }
 

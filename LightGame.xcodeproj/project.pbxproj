@@ -55,6 +55,7 @@
 		54590CEC05740B4E6306F74C /* WallNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallNode.h; sourceTree = "<group>"; };
 		54590D96F7E0E62734061CAF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		54590E8FF8FDF1FC43573908 /* RunnerNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunnerNode.h; sourceTree = "<group>"; };
+		54590F697FCF71D0B58D86BF /* ContactCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCategories.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +120,7 @@
 				5459031ECB641482713E1990 /* Directions.h */,
 				54590C2E1FFBC472C6B92150 /* WallNode.m */,
 				54590CEC05740B4E6306F74C /* WallNode.h */,
+				54590F697FCF71D0B58D86BF /* ContactCategories.h */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";

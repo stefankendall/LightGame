@@ -1,5 +1,5 @@
 #import <SpriteKit/SpriteKit.h>
 
-@interface TutorialScene : SKScene
+@interface TutorialScene : SKScene <SKPhysicsContactDelegate>
 
 @end
