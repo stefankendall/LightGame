@@ -1,10 +1,4 @@
-//
-//  main.m
-//  LightGame
-//
-//  Created by Stefan Kendall on 6/2/15.
-//  Copyright (c) 2015 Usable Design LLC. All rights reserved.
-//
+
 
 
 #import <UIKit/UIKit.h>
