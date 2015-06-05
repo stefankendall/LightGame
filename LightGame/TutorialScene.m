@@ -14,7 +14,10 @@
     runner.name = @"runner";
     [self addChild:runner];
     runner.position = CGPointMake(self.size.width / 2, [runner calculateAccumulatedFrame].size.height);
+    self.startTrailPosition = runner.position;
     [runner applyImpulseForDirection];
+
+    [self createInitialTrail:runner];
 
     int topWallHeight = 10;
     CGFloat topWallYPosition = self.size.height - 100;
@@ -33,6 +36,13 @@
             [SKAction fadeAlphaTo:0.3 duration:5]
     ]]]];
     [self addChild:warning];
+}
+
+- (void)createInitialTrail:(RunnerNode *)runner {
+    WallNode *trail = [WallNode createWithSize:CGSizeMake([runner calculateAccumulatedFrame].size.width,
+            runner.position.y - self.startTrailPosition.y - [runner calculateAccumulatedFrame].size.height / 2)];
+    trail.name = @"trail";
+    [self addChild:trail];
 }
 
 - (void)addWall:(CGRect)rect {
@@ -58,24 +68,44 @@
 }
 
 - (void)update:(CFTimeInterval)currentTime {
+    if (!self.lastUpdateTime) {
+        self.lastUpdateTime = currentTime;
+    }
+
+    if (currentTime - self.lastUpdateTime > 0.05) {
+        self.lastUpdateTime = currentTime;
+        [self updateTrail];
+    }
+}
+
+- (void)updateTrail {
+    RunnerNode *runner = (RunnerNode *) [self childNodeWithName:@"runner"];
+    WallNode *trail = (WallNode *) [self childNodeWithName:@"trail"];
+    [trail updateForRunner: runner originalPosition: self.startTrailPosition];
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
     if ([contact.bodyA.node.name isEqualToString:@"runner"]) {
-        RunnerNode *runner = (RunnerNode *) [self childNodeWithName:@"runner"];
+        RunnerNode *runner = (RunnerNode *)
+                [self childNodeWithName:@"runner"];
         [runner stop];
         self.hitWall = YES;
         [runner runAction:[SKAction sequence:@[
                 [SKAction fadeAlphaTo:0 duration:1],
                 [SKAction runBlock:^{
                     [runner setDirection:NORTH];
+                    [self enumerateChildNodesWithName:@"trail" usingBlock:^(SKNode *node, BOOL *stop) {
+                        [node removeFromParent];
+                    }];
                     runner.position = CGPointMake(self.size.width / 2, [runner calculateAccumulatedFrame].size.height);
+                    self.startTrailPosition = runner.position;
                     runner.zRotation = 0;
                 }],
                 [SKAction fadeAlphaTo:1 duration:0.5],
                 [SKAction runBlock:^{
                     self.hitWall = NO;
                     [runner applyImpulseForDirection];
+                    [self createInitialTrail:runner];
                 }]
         ]]];
     }
