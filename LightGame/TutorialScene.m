@@ -39,14 +39,13 @@
 }
 
 - (void)startTrail:(RunnerNode *)runner {
-    WallNode *trail = [WallNode createWithSize:CGSizeMake([runner calculateAccumulatedFrame].size.width,
-            runner.position.y - self.startTrailPosition.y - [runner calculateAccumulatedFrame].size.height / 2)];
+    WallNode *trail = [WallNode createWithSize:CGSizeMake(0, 0) hollow:YES];
     trail.name = @"trail";
     [self addChild:trail];
 }
 
 - (void)addWall:(CGRect)rect {
-    WallNode *wall = [WallNode createWithSize:rect.size];
+    WallNode *wall = [WallNode createWithSize:rect.size hollow:NO];
     wall.position = CGPointMake(rect.origin.x + rect.size.width / 2, rect.origin.y - rect.size.height / 2);
     [self addChild:wall];
 }
@@ -73,7 +72,7 @@
 
 - (void)stopTrail {
     WallNode *node = (WallNode *) [self childNodeWithName:@"trail"];
-    node.name = @"wall";
+    [node makeSolidWall];
 }
 
 - (void)update:(CFTimeInterval)currentTime {
@@ -94,20 +93,26 @@
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
-    if ([contact.bodyA.node.name isEqualToString:@"runner"]) {
+    if ([contact.bodyA.node.name isEqualToString:@"runner"] || [contact.bodyB.node.name isEqualToString:@"runner"]) {
         RunnerNode *runner = (RunnerNode *)
                 [self childNodeWithName:@"runner"];
         [runner stop];
         self.hitWall = YES;
         [runner runAction:[SKAction sequence:@[
-                [SKAction fadeAlphaTo:0 duration:1],
                 [SKAction runBlock:^{
-                    [runner setDirection:NORTH];
                     void (^removeFromParent)(SKNode *, BOOL *) = ^(SKNode *node, BOOL *stop) {
-                        [node removeFromParent];
+                        [node runAction:[SKAction sequence:@[
+                                [SKAction fadeAlphaTo:0 duration:0.5],
+                                [SKAction removeFromParent]
+                        ]]];
                     };
                     [self enumerateChildNodesWithName:@"trail" usingBlock:removeFromParent];
                     [self enumerateChildNodesWithName:@"wall" usingBlock:removeFromParent];
+                }],
+                [SKAction waitForDuration:0.5],
+                [SKAction fadeAlphaTo:0 duration:1],
+                [SKAction runBlock:^{
+                    [runner setDirection:NORTH];
                     runner.position = CGPointMake(self.size.width / 2, [runner calculateAccumulatedFrame].size.height);
                     self.startTrailPosition = runner.position;
                     runner.zRotation = 0;

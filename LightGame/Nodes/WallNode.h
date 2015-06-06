@@ -7,9 +7,9 @@
 @interface WallNode : SKNode
 @property(nonatomic) CGSize size;
 
-+ (WallNode *)createWithSize:(CGSize)size;
-
-- (void)setHeight:(CGFloat)height;
++ (WallNode *)createWithSize:(CGSize)size hollow: (BOOL) hollow;
 
 - (void)updateForRunner:(RunnerNode *)node originalPosition:(CGPoint)startTrailPosition;
+
+- (void)makeSolidWall;
 @end
