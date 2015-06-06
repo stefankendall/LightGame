@@ -6,7 +6,7 @@
 
 + (RunnerNode *)create {
     RunnerNode *node = [self node];
-    node.currentSpeed = 0.2;
+    node.currentSpeed = 0.02;
     node.direction = NORTH;
 
     CGSize size = CGSizeMake(10, 10);
@@ -15,7 +15,7 @@
     [body setFillColor:[UIColor whiteColor]];
     [node addChild:body];
     [node setPhysicsBody:[SKPhysicsBody bodyWithPolygonFromPath:[CGPathRefHelper pathForTriangleOfSize:
-            CGSizeMake(size.width - 2, size.height - 2)]]];
+            CGSizeMake(size.width / 4, size.height / 4)]]];
     node.physicsBody.linearDamping = 0;
     node.physicsBody.angularDamping = 0;
 
