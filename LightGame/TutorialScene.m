@@ -39,13 +39,13 @@
 }
 
 - (void)startTrail {
-    WallNode *trail = [WallNode createWithSize:CGSizeMake(0, 0) hollow:YES];
+    WallNode *trail = [WallNode createWithSize:CGSizeMake(0, 0)];
     trail.name = @"trail";
     [self addChild:trail];
 }
 
 - (void)addWall:(CGRect)rect {
-    WallNode *wall = [WallNode createWithSize:rect.size hollow:NO];
+    WallNode *wall = [WallNode createWithSize:rect.size];
     wall.position = CGPointMake(rect.origin.x + rect.size.width / 2, rect.origin.y - rect.size.height / 2);
     [self addChild:wall];
 }

@@ -4,15 +4,10 @@
 
 @implementation WallNode
 
-+ (WallNode *)createWithSize:(CGSize)size hollow:(BOOL)hollow {
++ (WallNode *)createWithSize:(CGSize)size {
     WallNode *node = [self node];
 
-    if (hollow) {
-        [node addSolidRectangleOfSize:size];
-    }
-    else {
-        [node addSolidRectangleOfSize:size];
-    }
+    [node addSolidRectangleOfSize:size];
     node.size = size;
     [node createPhysicsBody];
 
@@ -36,13 +31,13 @@
 
 - (void)updateForRunner:(RunnerNode *)runner originalPosition:(CGPoint)startTrailPosition {
     if (self.position.x == startTrailPosition.x) {
-        self.position = CGPointMake(runner.position.x, (runner.position.y + startTrailPosition.y) / 2);
-        CGFloat newHeight = (CGFloat) ceil(fabs(runner.position.y - startTrailPosition.y));
+        self.position = CGPointMake(runner.backPosition.x, (runner.backPosition.y + startTrailPosition.y) / 2);
+        CGFloat newHeight = (CGFloat) ceil(fabs(runner.backPosition.y - startTrailPosition.y));
         [self setRectangleSize:CGSizeMake([runner calculateAccumulatedFrame].size.width, newHeight)];
     }
     else {
-        self.position = CGPointMake((runner.position.x + startTrailPosition.x) / 2, runner.position.y);
-        CGFloat newWidth = (CGFloat) ceil(fabs(runner.position.x - startTrailPosition.x));
+        self.position = CGPointMake((runner.backPosition.x + startTrailPosition.x) / 2, runner.backPosition.y);
+        CGFloat newWidth = (CGFloat) ceil(fabs(runner.backPosition.x - startTrailPosition.x));
         [self setRectangleSize:CGSizeMake(newWidth, [runner calculateAccumulatedFrame].size.height)];
     }
 }
