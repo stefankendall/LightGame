@@ -14,10 +14,10 @@
     runner.name = @"runner";
     [self addChild:runner];
     runner.position = CGPointMake(self.size.width / 2, [runner calculateAccumulatedFrame].size.height);
-    self.startTrailPosition = runner.position;
+    self.startTrailPosition = [runner backPosition];
     [runner applyImpulseForDirection];
 
-    [self startTrail:runner];
+    [self startTrail];
 
     int topWallHeight = 10;
     CGFloat topWallYPosition = self.size.height - 100;
@@ -38,7 +38,7 @@
     [self addChild:warning];
 }
 
-- (void)startTrail:(RunnerNode *)runner {
+- (void)startTrail {
     WallNode *trail = [WallNode createWithSize:CGSizeMake(0, 0) hollow:YES];
     trail.name = @"trail";
     [self addChild:trail];
@@ -66,8 +66,9 @@
     else {
         [runner turnRight];
     }
-    self.startTrailPosition = runner.position;
-    [self startTrail:runner];
+    self.startTrailPosition = [runner backPosition];
+    [self startTrail];
+    [runner applyImpulseForDirection];
 }
 
 - (void)stopTrail {
@@ -79,11 +80,7 @@
     if (!self.lastUpdateTime) {
         self.lastUpdateTime = currentTime;
     }
-
-    if (currentTime - self.lastUpdateTime > 0.05) {
-        self.lastUpdateTime = currentTime;
-        [self updateTrail];
-    }
+    [self updateTrail];
 }
 
 - (void)updateTrail {
@@ -114,14 +111,14 @@
                 [SKAction runBlock:^{
                     [runner setDirection:NORTH];
                     runner.position = CGPointMake(self.size.width / 2, [runner calculateAccumulatedFrame].size.height);
-                    self.startTrailPosition = runner.position;
+                    self.startTrailPosition = [runner backPosition];
                     runner.zRotation = 0;
                 }],
                 [SKAction fadeAlphaTo:1 duration:0.5],
                 [SKAction runBlock:^{
                     self.hitWall = NO;
                     [runner applyImpulseForDirection];
-                    [self startTrail:runner];
+                    [self startTrail];
                 }]
         ]]];
     }

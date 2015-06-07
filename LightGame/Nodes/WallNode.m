@@ -37,12 +37,12 @@
 - (void)updateForRunner:(RunnerNode *)runner originalPosition:(CGPoint)startTrailPosition {
     if (self.position.x == startTrailPosition.x) {
         self.position = CGPointMake(runner.position.x, (runner.position.y + startTrailPosition.y) / 2);
-        CGFloat newHeight = (CGFloat) fabs(runner.position.y - startTrailPosition.y);
+        CGFloat newHeight = (CGFloat) ceil(fabs(runner.position.y - startTrailPosition.y));
         [self setRectangleSize:CGSizeMake([runner calculateAccumulatedFrame].size.width, newHeight)];
     }
     else {
         self.position = CGPointMake((runner.position.x + startTrailPosition.x) / 2, runner.position.y);
-        CGFloat newWidth = (CGFloat) fabs(runner.position.x - startTrailPosition.x);
+        CGFloat newWidth = (CGFloat) ceil(fabs(runner.position.x - startTrailPosition.x));
         [self setRectangleSize:CGSizeMake(newWidth, [runner calculateAccumulatedFrame].size.height)];
     }
 }

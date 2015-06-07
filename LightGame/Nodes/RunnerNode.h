@@ -9,6 +9,8 @@
 
 @property(nonatomic, assign) enum Direction direction;
 
+@property(nonatomic) CGSize size;
+
 + (RunnerNode *)create;
 
 - (void)applyImpulseForDirection;
@@ -18,4 +20,6 @@
 - (void)turnLeft;
 
 - (void)stop;
+
+- (CGPoint)backPosition;
 @end

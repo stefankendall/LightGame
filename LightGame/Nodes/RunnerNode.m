@@ -9,13 +9,13 @@
     node.currentSpeed = 0.02;
     node.direction = NORTH;
 
-    CGSize size = CGSizeMake(10, 10);
-    CGPathRef path = [CGPathRefHelper pathForTriangleOfSize:size];
+    node.size = CGSizeMake(10, 10);
+    CGPathRef path = [CGPathRefHelper pathForTriangleOfSize:node.size];
     SKShapeNode *body = [SKShapeNode shapeNodeWithPath:path];
     [body setFillColor:[UIColor whiteColor]];
     [node addChild:body];
     [node setPhysicsBody:[SKPhysicsBody bodyWithPolygonFromPath:[CGPathRefHelper pathForTriangleOfSize:
-            CGSizeMake(size.width / 4, size.height / 4)]]];
+            CGSizeMake(node.size.width / 4, node.size.height / 4)]]];
     node.physicsBody.linearDamping = 0;
     node.physicsBody.angularDamping = 0;
 
@@ -51,25 +51,45 @@
     return velocityVector;
 }
 
-- (void)moveForwardInDirection:(int)positionChange {
+- (void)changeDirection:(int)positionChange {
     NSArray *directions = @[@(NORTH), @(EAST), @(SOUTH), @(WEST)];
     int nextIndex = (([directions indexOfObject:@(self.direction)] + positionChange) % [directions count]);
     self.direction = (enum Direction) [directions[(NSUInteger) nextIndex] intValue];
-    [self applyImpulseForDirection];
 }
 
 - (void)turnRight {
-    [self moveForwardInDirection:1];
+    [self changeDirection:1];
     self.zRotation = (CGFloat) (self.zRotation - M_PI / 2);
 }
 
 - (void)turnLeft {
-    [self moveForwardInDirection:-1];
+    [self changeDirection:-1];
     self.zRotation = (CGFloat) (self.zRotation + M_PI / 2);
 }
 
 - (void)stop {
     self.physicsBody.velocity = CGVectorMake(0, 0);
+}
+
+- (CGPoint)backPosition {
+    double xOffset = 0;
+    double yOffset = 0;
+    if (self.direction == NORTH) {
+        yOffset = -self.size.height / 2;
+    }
+    else if (self.direction == SOUTH) {
+        yOffset = self.size.height / 2;
+    }
+    else if (self.direction == EAST) {
+        xOffset = -self.size.height / 2;
+    }
+    else {
+        xOffset = self.size.height / 2;
+    }
+    return CGPointMake(
+            (CGFloat) (self.position.x + xOffset),
+            (CGFloat) (self.position.y + yOffset)
+    );
 }
 
 @end
