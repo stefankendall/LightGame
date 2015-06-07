@@ -8,7 +8,7 @@
     WallNode *node = [self node];
 
     if (hollow) {
-        [node addHollowRectangleOfSize:size];
+        [node addSolidRectangleOfSize:size];
     }
     else {
         [node addSolidRectangleOfSize:size];
@@ -50,7 +50,7 @@
 - (void)setRectangleSize:(CGSize)size {
     self.size = size;
     SKShapeNode *rectangle = (SKShapeNode *) [self childNodeWithName:@"rectangle"];
-    [self addHollowRectangleOfSize:size];
+    [self addSolidRectangleOfSize:size];
     [rectangle removeFromParent];
 }
 
