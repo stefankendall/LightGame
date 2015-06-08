@@ -1,5 +1,5 @@
 #import "GameViewController.h"
-#import "TutorialScene.h"
+#import "CourseScene.h"
 
 @implementation GameViewController
 
@@ -8,7 +8,7 @@
     SKView *skView = (SKView *) self.view;
     skView.showsFPS = YES;
     skView.ignoresSiblingOrder = YES;
-    TutorialScene *scene = [[TutorialScene alloc] initWithSize:skView.frame.size];
+    CourseScene *scene = [[CourseScene alloc] initWithSize:skView.frame.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     [skView presentScene:scene];
 }
