@@ -10,6 +10,7 @@
 		028DFE901B1E90E400759053 /* font.xib in Resources */ = {isa = PBXBuildFile; fileRef = 028DFE8F1B1E90E400759053 /* font.xib */; };
 		5459007FB8346EFE87CD6B27 /* LightGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 545905159D121708EF93CAFF /* LightGameTests.m */; };
 		54590153167F6EC6F2F5692B /* CGPathRefHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5459000EFF3A53543E53A9D4 /* CGPathRefHelper.m */; };
+		545901A40D39E196F93FBD2E /* BallNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 545908545BD130AC9B4EA69B /* BallNode.m */; };
 		545901B5C524CDAF7A1E3060 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5459071C7EC526DBFC56623E /* AppDelegate.m */; };
 		5459029B4F1E17E96395566E /* Level1Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 5459099D99B384F70BFCDE40 /* Level1Node.m */; };
 		545903805EFB3C765937EEC2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54590960D6E63E4753EC7D2C /* LaunchScreen.xib */; };
@@ -46,11 +47,13 @@
 		545906823E4A6F376B6C040A /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		5459071AA3E6E3C16FAB66DF /* Level1Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1Node.h; sourceTree = "<group>"; };
 		5459071C7EC526DBFC56623E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		545908545BD130AC9B4EA69B /* BallNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallNode.m; sourceTree = "<group>"; };
 		545908F2AEF524BB2A4F7086 /* CourseScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseScene.h; sourceTree = "<group>"; };
 		5459099D99B384F70BFCDE40 /* Level1Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level1Node.m; sourceTree = "<group>"; };
 		54590B910F9FFB792E333420 /* LightGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54590BE4C284060F33033839 /* CourseScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseScene.m; sourceTree = "<group>"; };
 		54590CC7C0128392C9195F9B /* CGPathRefHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPathRefHelper.h; sourceTree = "<group>"; };
+		54590CFE21577C1C1FE41522 /* BallNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallNode.h; sourceTree = "<group>"; };
 		54590D96F7E0E62734061CAF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		54590F697FCF71D0B58D86BF /* ContactCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCategories.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +119,8 @@
 				54590F697FCF71D0B58D86BF /* ContactCategories.h */,
 				5459099D99B384F70BFCDE40 /* Level1Node.m */,
 				5459071AA3E6E3C16FAB66DF /* Level1Node.h */,
+				545908545BD130AC9B4EA69B /* BallNode.m */,
+				54590CFE21577C1C1FE41522 /* BallNode.h */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				545906EDC4383B9E9F0747D8 /* GameViewController.m in Sources */,
 				54590153167F6EC6F2F5692B /* CGPathRefHelper.m in Sources */,
 				5459029B4F1E17E96395566E /* Level1Node.m in Sources */,
+				545901A40D39E196F93FBD2E /* BallNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

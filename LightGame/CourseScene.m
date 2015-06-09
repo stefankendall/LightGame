@@ -1,5 +1,6 @@
 #import "CourseScene.h"
 #import "Level1Node.h"
+#import "BallNode.h"
 
 @class Level1Node;
 
@@ -26,5 +27,19 @@
     scale = (CGFloat) (scale < minZoom ? minZoom : scale);
     [[self childNodeWithName:@"level"] setScale:scale];
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+    [ball hitInDirection:CGVectorMake(0, 1) withPercentOfMaxForce:1];
+}
+
+- (void)update:(NSTimeInterval)currentTime {
+    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+    Level1Node *level = (Level1Node *) [self childNodeWithName:@"level"];
+    double ballYChange = ball.position.y - level.initialBallPosition.y;
+    level.position = CGPointMake(level.position.x,
+            (CGFloat) (-ballYChange) + [level calculateAccumulatedFrame].size.height / 2);
+}
+
 
 @end
