@@ -37,8 +37,14 @@
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     Level1Node *level = (Level1Node *) [self childNodeWithName:@"level"];
     double ballYChange = ball.position.y - level.initialBallPosition.y;
-    level.position = CGPointMake(level.position.x,
+    CGPoint newPosition = CGPointMake(level.position.x,
             (CGFloat) (-ballYChange) + [level calculateAccumulatedFrame].size.height / 2);
+    [level runAction:[SKAction moveTo:newPosition duration:0.3]];
+
+    double velocitySquared = pow(ball.physicsBody.velocity.dy, 2) + pow(ball.physicsBody.velocity.dx, 2);
+    if (velocitySquared < 40) {
+        ball.physicsBody.velocity = CGVectorMake(0, 0);
+    }
 }
 
 
