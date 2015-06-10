@@ -32,10 +32,13 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if ([touches count] == 1) {
-        BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-        [ball hitInDirection:CGVectorMake(0, 1) withPercentOfMaxForce:0.5];
-    }
+    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+    [ball adjustAimForTouch:[touches anyObject]];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+    [ball adjustAimForTouch:[touches anyObject]];
 }
 
 - (void)update:(NSTimeInterval)currentTime {

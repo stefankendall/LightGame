@@ -29,4 +29,10 @@ const int BALL_RADIUS = 7;
     [self.physicsBody applyForce:CGVectorMake((CGFloat) xForce, (CGFloat) yForce)];
 }
 
+- (void)adjustAimForTouch:(UITouch *)touch {
+    CGPoint point = [touch locationInNode:self];
+    CGFloat angle = (CGFloat) atan2f(point.y, point.x);
+    [self childNodeWithName:@"aim"].zRotation = (CGFloat) (angle + M_PI_2);
+}
+
 @end

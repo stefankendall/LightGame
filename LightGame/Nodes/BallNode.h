@@ -9,4 +9,6 @@ extern const int BALL_RADIUS;
 + (instancetype)create;
 
 - (void)hitInDirection:(CGVector)vector withPercentOfMaxForce:(double)force;
+
+- (void)adjustAimForTouch:(id)object;
 @end
