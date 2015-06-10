@@ -2,9 +2,11 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
+extern const int BALL_RADIUS;
+
 @interface BallNode : SKNode
 
-+ (instancetype) create;
++ (instancetype)create;
 
 - (void)hitInDirection:(CGVector)vector withPercentOfMaxForce:(double)force;
 @end
