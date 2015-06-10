@@ -14,7 +14,7 @@
     Level1Node *level = [Level1Node createWithSize:self.size];
     level.name = @"level";
     [self addChild:level];
-    level.position = CGPointMake(self.size.width / 2, self.size.height / 2);
+    level.position = [self cameraPosition];
 
     UIGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     [view addGestureRecognizer:pinch];
@@ -52,12 +52,17 @@
 }
 
 - (void)followBallWithCamera {
-    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     Level1Node *level = (Level1Node *) [self childNodeWithName:@"level"];
+    [level runAction:[SKAction moveTo:[self cameraPosition] duration:0.1]];
+}
+
+- (CGPoint)cameraPosition {
+    Level1Node *level = (Level1Node *) [self childNodeWithName:@"level"];
+    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     double ballYChange = ball.position.y - level.initialBallPosition.y;
-    CGPoint newPosition = CGPointMake(level.position.x,
-            (CGFloat) (-ballYChange) + [level calculateAccumulatedFrame].size.height / 2);
-    [level runAction:[SKAction moveTo:newPosition duration:0.1]];
+    return CGPointMake(self.size.width / 2,
+            level.yScale * ((CGFloat) (-ballYChange) + 3 * [level calculateAccumulatedFrame].size.height / 4));
+
 }
 
 

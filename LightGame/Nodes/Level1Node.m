@@ -12,8 +12,9 @@
     ground.position = CGPointMake(0, 0);
     [ground setFillColor:[UIColor whiteColor]];
     [ground setStrokeColor:[UIColor grayColor]];
-    [ground setLineWidth:10];
-    ground.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:groundRect];
+    int borderWidth = 10;
+    [ground setLineWidth:borderWidth];
+    ground.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectInset(groundRect, borderWidth / 2, borderWidth / 2)];
     ground.physicsBody.dynamic = NO;
     [node addChild:ground];
 
@@ -21,7 +22,6 @@
     [node addChild:ballNode];
     ballNode.position = CGPointMake(0, -size.height / 2 + xPad + 100);
     node.initialBallPosition = ballNode.position;
-
 
     return node;
 }
