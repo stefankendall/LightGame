@@ -41,6 +41,7 @@
 - (void)update:(NSTimeInterval)currentTime {
     [self followBallWithCamera];
     [self stopBallIfNecessary];
+    Level1Node *levelNode = (Level1Node *) [self childNodeWithName:@"level"];
 }
 
 - (void)stopBallIfNecessary {

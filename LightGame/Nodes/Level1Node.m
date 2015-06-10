@@ -1,6 +1,7 @@
 #import "Level1Node.h"
 #import "BallNode.h"
 #import "HoleNode.h"
+#import "AimNode.h"
 
 @implementation Level1Node
 
@@ -24,10 +25,15 @@
     ballNode.position = CGPointMake(0, -size.height / 2 + xPad + 100);
     node.initialBallPosition = ballNode.position;
 
+    AimNode *aim = [AimNode create];
+    [ballNode addChild:aim];
+
+
     HoleNode *hole = [HoleNode create];
     [node addChild:hole];
     hole.position = CGPointMake(0, size.height / 2 - xPad);
 
     return node;
 }
+
 @end

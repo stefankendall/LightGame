@@ -20,6 +20,7 @@
 		5459086CDF5FFD6255214FF5 /* CourseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54590BE4C284060F33033839 /* CourseScene.m */; };
 		545908BF011CBB516F091CF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 545901755FA27ED0B1660A47 /* main.m */; };
 		545909214DC93A4B16F81901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 545908F4D7187B35A3CB2F50 /* Main.storyboard */; };
+		54590A66D138C0100F4EDB5C /* AimNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 545905AA58DC90DB098A5073 /* AimNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		5459040AAA3DE0FFA1A943A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5459047843334D040B19C6D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		545905159D121708EF93CAFF /* LightGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightGameTests.m; sourceTree = "<group>"; };
+		545905AA58DC90DB098A5073 /* AimNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AimNode.m; sourceTree = "<group>"; };
 		5459064D452DD2658A6F8067 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		5459067E96BB99A7A407D04B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		545906823E4A6F376B6C040A /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		54590CC7C0128392C9195F9B /* CGPathRefHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPathRefHelper.h; sourceTree = "<group>"; };
 		54590CFE21577C1C1FE41522 /* BallNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallNode.h; sourceTree = "<group>"; };
 		54590D96F7E0E62734061CAF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		54590F33AD86281DE3E32530 /* AimNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimNode.h; sourceTree = "<group>"; };
 		54590F697FCF71D0B58D86BF /* ContactCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCategories.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +129,8 @@
 				54590CFE21577C1C1FE41522 /* BallNode.h */,
 				545901D4E07A633E3AC79CE6 /* HoleNode.m */,
 				545908666D7C5FF0942B75D5 /* HoleNode.h */,
+				545905AA58DC90DB098A5073 /* AimNode.m */,
+				54590F33AD86281DE3E32530 /* AimNode.h */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				5459029B4F1E17E96395566E /* Level1Node.m in Sources */,
 				545901A40D39E196F93FBD2E /* BallNode.m in Sources */,
 				54590229E5F75345AB8CA5C6 /* HoleNode.m in Sources */,
+				54590A66D138C0100F4EDB5C /* AimNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
