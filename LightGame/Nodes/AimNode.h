@@ -6,4 +6,5 @@
 
 + (instancetype) create;
 
+- (void)highlight:(double)d;
 @end

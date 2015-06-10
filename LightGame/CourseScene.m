@@ -33,12 +33,17 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    [ball adjustAimForTouch:[touches anyObject]];
+    [ball startTouch:[touches anyObject]];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    [ball adjustAimForTouch:[touches anyObject]];
+    [ball touchesMoved:[touches anyObject]];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+    [ball release:[touches anyObject]];
 }
 
 - (void)update:(NSTimeInterval)currentTime {

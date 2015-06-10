@@ -6,9 +6,21 @@ extern const int BALL_RADIUS;
 
 @interface BallNode : SKNode
 
+@property(nonatomic) double startTouchDistanceFromBall;
+
+@property(nonatomic) double pullStrength;
+
+@property(nonatomic) CGFloat hitAngle;
+
 + (instancetype)create;
 
-- (void)hitInDirection:(CGVector)vector withPercentOfMaxForce:(double)force;
-
 - (void)adjustAimForTouch:(id)object;
+
+- (void)startTouch:(id)object;
+
+- (void)touchesMoved:(UITouch *)touch;
+
+- (void)release:(UITouch *)touch;
+
+- (void)hit;
 @end
