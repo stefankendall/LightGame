@@ -73,9 +73,10 @@ const int BALL_RADIUS = 7;
     [self.physicsBody applyForce:CGVectorMake((CGFloat) xForce, (CGFloat) yForce)];
 }
 
-- (void)fallToward:(CGVector)vector {
-    double power = 0.01;
-    [self.physicsBody applyImpulse:CGVectorMake(vector.dx * power, vector.dy * power)];
+- (void)fallToward:(CGVector)vector overDuration:(NSTimeInterval)duration {
+    double power = duration / 25;
+    [self.physicsBody applyImpulse:
+            CGVectorMake((CGFloat) (vector.dx * power), (CGFloat) (vector.dy * power))];
 }
 
 @end

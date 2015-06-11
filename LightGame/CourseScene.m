@@ -46,11 +46,6 @@
     [ball release:[touches anyObject]];
 }
 
-- (void)update:(NSTimeInterval)currentTime {
-    [self followBallWithCamera];
-    [self stopBallIfNecessary];
-}
-
 - (void)stopBallIfNecessary {
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     double velocitySquared = pow(ball.physicsBody.velocity.dy, 2) + pow(ball.physicsBody.velocity.dx, 2);
@@ -90,15 +85,29 @@
     }
 
     if (gravity && ball) {
-        CGPoint ballPoint = [self convertPoint:ball.position fromNode:ball.parent];
-        CGPoint gravityPoint = [self convertPoint:gravity.position fromNode:gravity.parent];
-        [ball fallToward:CGVectorMake(gravityPoint.x - ballPoint.x, gravityPoint.y - ballPoint.y)];
+        self.ballFallingTowardHole = YES;
     }
 }
 
 - (void)didEndContact:(SKPhysicsContact *)contact {
-
+    self.ballFallingTowardHole = NO;
 }
 
+- (void)update:(NSTimeInterval)currentTime {
+    [self followBallWithCamera];
+    [self stopBallIfNecessary];
+
+    if (self.ballFallingTowardHole) {
+        BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+        SKNode *gravity = (BallNode *) [self childNodeWithName:@"//gravity"];
+
+        CGPoint ballPoint = [self convertPoint:ball.position fromNode:ball.parent];
+        CGPoint gravityPoint = [self convertPoint:gravity.position fromNode:gravity.parent];
+        [ball fallToward:CGVectorMake(gravityPoint.x - ballPoint.x, gravityPoint.y - ballPoint.y)
+            overDuration:currentTime - self.lastTime];
+    }
+
+    self.lastTime = currentTime;
+}
 
 @end
