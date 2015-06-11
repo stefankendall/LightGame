@@ -8,7 +8,13 @@
     HoleNode *node = [self node];
 
     int HOLE_RADIUS = BALL_RADIUS + 1;
-    SKShapeNode *gravity = [SKShapeNode shapeNodeWithCircleOfRadius:HOLE_RADIUS + 5];
+    int gravityRadius = HOLE_RADIUS + 7;
+    SKShapeNode *gravity = [SKShapeNode shapeNodeWithCircleOfRadius:gravityRadius];
+    gravity.name = @"gravity";
+    gravity.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:gravityRadius];
+    gravity.physicsBody.categoryBitMask = CategoryGravity;
+    gravity.physicsBody.contactTestBitMask = CategoryBall;
+    gravity.physicsBody.collisionBitMask = CollisionBallAndHole;
     [gravity setFillColor:[UIColor lightGrayColor]];
     gravity.alpha = 0.7;
     [node addChild:gravity];

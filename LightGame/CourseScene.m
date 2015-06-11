@@ -49,7 +49,6 @@
 - (void)update:(NSTimeInterval)currentTime {
     [self followBallWithCamera];
     [self stopBallIfNecessary];
-    Level1Node *levelNode = (Level1Node *) [self childNodeWithName:@"level"];
 }
 
 - (void)stopBallIfNecessary {
@@ -71,6 +70,33 @@
     double ballYChange = ball.position.y - level.initialBallPosition.y;
     return CGPointMake(self.size.width / 2,
             level.yScale * ((CGFloat) (-ballYChange) + 3 * [level calculateAccumulatedFrame].size.height / 4));
+}
+
+- (void)didBeginContact:(SKPhysicsContact *)contact {
+    SKNode *gravity;
+    BallNode *ball;
+    if ([contact.bodyA.node.name isEqualToString:@"gravity"]) {
+        gravity = contact.bodyA.node;
+    }
+    if ([contact.bodyB.node.name isEqualToString:@"gravity"]) {
+        gravity = contact.bodyB.node;
+    }
+
+    if ([contact.bodyA.node.name isEqualToString:@"ball"]) {
+        ball = (BallNode *) contact.bodyA.node;
+    }
+    if ([contact.bodyB.node.name isEqualToString:@"ball"]) {
+        ball = (BallNode *) contact.bodyB.node;
+    }
+
+    if (gravity && ball) {
+        CGPoint ballPoint = [self convertPoint:ball.position fromNode:ball.parent];
+        CGPoint gravityPoint = [self convertPoint:gravity.position fromNode:gravity.parent];
+        [ball fallToward:CGVectorMake(gravityPoint.x - ballPoint.x, gravityPoint.y - ballPoint.y)];
+    }
+}
+
+- (void)didEndContact:(SKPhysicsContact *)contact {
 
 }
 

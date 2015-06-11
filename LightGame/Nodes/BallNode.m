@@ -72,4 +72,10 @@ const int BALL_RADIUS = 7;
     double yForce = maxForce * forcePercent * sin(self.hitAngle);
     [self.physicsBody applyForce:CGVectorMake((CGFloat) xForce, (CGFloat) yForce)];
 }
+
+- (void)fallToward:(CGVector)vector {
+    double power = 0.01;
+    [self.physicsBody applyImpulse:CGVectorMake(vector.dx * power, vector.dy * power)];
+}
+
 @end

@@ -28,7 +28,6 @@
     AimNode *aim = [AimNode create];
     [ballNode addChild:aim];
 
-
     HoleNode *hole = [HoleNode create];
     [node addChild:hole];
     hole.position = CGPointMake(0, size.height / 2 - xPad);

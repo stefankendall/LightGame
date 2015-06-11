@@ -23,4 +23,6 @@ extern const int BALL_RADIUS;
 - (void)release:(UITouch *)touch;
 
 - (void)hit;
+
+- (void)fallToward:(CGVector)point;
 @end
