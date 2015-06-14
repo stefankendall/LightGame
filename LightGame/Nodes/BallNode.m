@@ -11,7 +11,7 @@ const int BALL_RADIUS = 7;
     ball.name = @"ball";
     ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:BALL_RADIUS];
     ball.physicsBody.restitution = 0.85;
-    ball.physicsBody.linearDamping = 0.6;
+    ball.physicsBody.linearDamping = 0.7;
     ball.physicsBody.collisionBitMask = CollisionBallAndHole;
     ball.physicsBody.categoryBitMask = CategoryBall;
     ball.physicsBody.allowsRotation = NO;
@@ -64,8 +64,7 @@ const int BALL_RADIUS = 7;
         return;
     }
 
-    double minForce = 0.05;
-    double forcePercent = self.pullStrength < minForce ? minForce : self.pullStrength;
+    double forcePercent = self.pullStrength;
     double maxForce = 200;
 
     double xForce = maxForce * forcePercent * cos(self.hitAngle);
@@ -74,7 +73,7 @@ const int BALL_RADIUS = 7;
 }
 
 - (void)fallToward:(CGVector)vector overDuration:(NSTimeInterval)duration {
-    double power = duration / 25;
+    double power = duration / 70;
     [self.physicsBody applyImpulse:
             CGVectorMake((CGFloat) (vector.dx * power), (CGFloat) (vector.dy * power))];
 }

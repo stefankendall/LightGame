@@ -27,6 +27,8 @@
     node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:HOLE_RADIUS];
     node.physicsBody.categoryBitMask = CategoryHole;
     node.physicsBody.collisionBitMask = CollisionBallAndHole;
+    node.physicsBody.contactTestBitMask = CategoryBall;
+    node.name = @"hole";
     return node;
 }
 

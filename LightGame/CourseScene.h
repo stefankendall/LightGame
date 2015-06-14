@@ -4,4 +4,6 @@
 
 @property(nonatomic) BOOL ballFallingTowardHole;
 @property(nonatomic) NSTimeInterval lastTime;
+@property(nonatomic) BOOL ballInHole;
+@property(nonatomic) BOOL holeOver;
 @end

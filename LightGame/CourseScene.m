@@ -1,6 +1,7 @@
 #import "CourseScene.h"
 #import "Level1Node.h"
 #import "BallNode.h"
+#import "HoleNode.h"
 
 @class Level1Node;
 
@@ -68,32 +69,30 @@
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
-    SKNode *gravity;
-    BallNode *ball;
-    if ([contact.bodyA.node.name isEqualToString:@"gravity"]) {
-        gravity = contact.bodyA.node;
-    }
-    if ([contact.bodyB.node.name isEqualToString:@"gravity"]) {
-        gravity = contact.bodyB.node;
-    }
-
-    if ([contact.bodyA.node.name isEqualToString:@"ball"]) {
-        ball = (BallNode *) contact.bodyA.node;
-    }
-    if ([contact.bodyB.node.name isEqualToString:@"ball"]) {
-        ball = (BallNode *) contact.bodyB.node;
-    }
-
-    if (gravity && ball) {
+    NSArray *nodeNames = @[contact.bodyA.node.name, contact.bodyB.node.name];
+    if ([nodeNames containsObject:@"gravity"] && [nodeNames containsObject:@"ball"]) {
         self.ballFallingTowardHole = YES;
+    }
+    if ([nodeNames containsObject:@"hole"] && [nodeNames containsObject:@"ball"]) {
+        self.ballInHole = YES;
     }
 }
 
 - (void)didEndContact:(SKPhysicsContact *)contact {
-    self.ballFallingTowardHole = NO;
+    NSArray *nodeNames = @[contact.bodyA.node.name, contact.bodyB.node.name];
+    if ([nodeNames containsObject:@"gravity"] && [nodeNames containsObject:@"ball"]) {
+        self.ballFallingTowardHole = NO;
+    }
+    if ([nodeNames containsObject:@"hole"] && [nodeNames containsObject:@"ball"]) {
+        self.ballInHole = NO;
+    }
 }
 
 - (void)update:(NSTimeInterval)currentTime {
+    if (self.holeOver) {
+        return;
+    }
+
     [self followBallWithCamera];
     [self stopBallIfNecessary];
 
@@ -107,7 +106,25 @@
             overDuration:currentTime - self.lastTime];
     }
 
+    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+    const int stopThreshhold = 500;
+    double speed = pow(ball.physicsBody.velocity.dy, 2) + pow(ball.physicsBody.velocity.dx, 2);
+    if (speed < stopThreshhold && self.ballInHole) {
+        [self holeReached];
+    }
+
     self.lastTime = currentTime;
+}
+
+- (void)holeReached {
+    self.holeOver = YES;
+    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+    HoleNode *hole = (HoleNode *) [self childNodeWithName:@"//hole"];
+
+    [ball runAction:[SKAction sequence:@[
+            [SKAction moveTo:[hole position] duration:0.5],
+            [SKAction removeFromParent]
+    ]]];
 }
 
 @end
