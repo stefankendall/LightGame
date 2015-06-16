@@ -2,6 +2,7 @@
 #import "Level1Node.h"
 #import "BallNode.h"
 #import "HoleNode.h"
+#import "NextLevelOverlayNode.h"
 
 @class Level1Node;
 
@@ -19,6 +20,7 @@
 
     UIGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     [view addGestureRecognizer:pinch];
+    [self showNextLevelPrompt];
 }
 
 - (void)pinch:(UIPinchGestureRecognizer *)pinch {
@@ -33,6 +35,14 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *anyTouch = [touches anyObject];
+    NSArray *touchedNodes = [self nodesAtPoint:[anyTouch locationInNode:self]];
+    SKNode *nextLevelNode = [self childNodeWithName:@"//nextLevelButton"];
+    if ([touchedNodes containsObject:nextLevelNode]) {
+        self.goToNextLevel = YES;
+        nextLevelNode.alpha = 0.5;
+    }
+
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     [ball startTouch:[touches anyObject]];
 }
@@ -43,6 +53,9 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (self.goToNextLevel) {
+        [self hideNextLevelPrompt];
+    }
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     [ball release:[touches anyObject]];
 }
@@ -123,8 +136,31 @@
 
     [ball runAction:[SKAction sequence:@[
             [SKAction moveTo:[hole position] duration:0.5],
-            [SKAction removeFromParent]
+            [SKAction runBlock:^{
+                [self showNextLevelPrompt];
+            }],
+            [SKAction removeFromParent],
     ]]];
+}
+
+- (void)showNextLevelPrompt {
+    SKShapeNode *nextLevelNode = [NextLevelOverlayNode create:self.frame];
+    [self addChild:nextLevelNode];
+    SKAction *moveIn = [SKAction moveToY:0 duration:0.3];
+    moveIn.timingMode = SKActionTimingEaseIn;
+    [nextLevelNode runAction:moveIn];
+}
+
+- (void)hideNextLevelPrompt {
+    SKNode *nextLevelNode = [self childNodeWithName:@"//nextLevelOverlay"];
+    SKNode *nextLevelButton = [self childNodeWithName:@"//nextLevelButton"];
+    nextLevelButton.alpha = 1;
+    [nextLevelNode runAction:
+            [SKAction sequence:@[
+                    [SKAction moveToY:self.size.height duration:0.3],
+                    [SKAction removeFromParent]
+            ]]
+    ];
 }
 
 @end

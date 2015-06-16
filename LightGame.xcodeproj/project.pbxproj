@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		028DFE901B1E90E400759053 /* font.xib in Resources */ = {isa = PBXBuildFile; fileRef = 028DFE8F1B1E90E400759053 /* font.xib */; };
 		5459007FB8346EFE87CD6B27 /* LightGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 545905159D121708EF93CAFF /* LightGameTests.m */; };
+		545900ACCD21DAD5C4A653C4 /* NextLevelOverlayNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 545903DCC72357B3740B68B6 /* NextLevelOverlayNode.m */; };
 		54590153167F6EC6F2F5692B /* CGPathRefHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5459000EFF3A53543E53A9D4 /* CGPathRefHelper.m */; };
 		545901A40D39E196F93FBD2E /* BallNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 545908545BD130AC9B4EA69B /* BallNode.m */; };
 		545901B5C524CDAF7A1E3060 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5459071C7EC526DBFC56623E /* AppDelegate.m */; };
@@ -42,6 +43,7 @@
 		545902E9E8F9CD9D71537686 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		545902F0FC257D8B8C66F249 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5459031ECB641482713E1990 /* Directions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Directions.h; sourceTree = "<group>"; };
+		545903DCC72357B3740B68B6 /* NextLevelOverlayNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLevelOverlayNode.m; sourceTree = "<group>"; };
 		5459040AAA3DE0FFA1A943A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5459047843334D040B19C6D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		545905159D121708EF93CAFF /* LightGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightGameTests.m; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 		54590CC7C0128392C9195F9B /* CGPathRefHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPathRefHelper.h; sourceTree = "<group>"; };
 		54590CFE21577C1C1FE41522 /* BallNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallNode.h; sourceTree = "<group>"; };
 		54590D96F7E0E62734061CAF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		54590EB78C6C0A1CD57F1487 /* NextLevelOverlayNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextLevelOverlayNode.h; sourceTree = "<group>"; };
 		54590F33AD86281DE3E32530 /* AimNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimNode.h; sourceTree = "<group>"; };
 		54590F697FCF71D0B58D86BF /* ContactCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCategories.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +134,8 @@
 				545908666D7C5FF0942B75D5 /* HoleNode.h */,
 				545905AA58DC90DB098A5073 /* AimNode.m */,
 				54590F33AD86281DE3E32530 /* AimNode.h */,
+				545903DCC72357B3740B68B6 /* NextLevelOverlayNode.m */,
+				54590EB78C6C0A1CD57F1487 /* NextLevelOverlayNode.h */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				545901A40D39E196F93FBD2E /* BallNode.m in Sources */,
 				54590229E5F75345AB8CA5C6 /* HoleNode.m in Sources */,
 				54590A66D138C0100F4EDB5C /* AimNode.m in Sources */,
+				545900ACCD21DAD5C4A653C4 /* NextLevelOverlayNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

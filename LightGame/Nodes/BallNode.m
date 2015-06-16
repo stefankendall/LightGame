@@ -44,7 +44,7 @@ const int BALL_RADIUS = 7;
     double diff = radialDistanceFromBall - self.startTouchDistanceFromBall;
     diff = diff < 0 ? 0 : diff;
     double MAX_PULL = 150;
-    return diff / MAX_PULL;
+    return 2 * diff / 3 / MAX_PULL;
 }
 
 - (void)release:(UITouch *)touch {
@@ -65,8 +65,15 @@ const int BALL_RADIUS = 7;
     }
 
     double forcePercent = self.pullStrength;
-    double maxForce = 200;
+    if (forcePercent < 0.5) {
+        forcePercent = (forcePercent + 0.1) * forcePercent;
+    }
+    else {
+        forcePercent -= 0.25;
+    }
+    forcePercent = forcePercent < 0.02 ? 0.02 : forcePercent;
 
+    double maxForce = 200;
     double xForce = maxForce * forcePercent * cos(self.hitAngle);
     double yForce = maxForce * forcePercent * sin(self.hitAngle);
     [self.physicsBody applyForce:CGVectorMake((CGFloat) xForce, (CGFloat) yForce)];
