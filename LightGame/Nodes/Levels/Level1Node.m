@@ -7,6 +7,7 @@
 
 + (Level1Node *)createWithSize:(CGSize)size {
     Level1Node *node = [self node];
+    node.name = @"level";
 
     CGFloat xPad = size.width / 6;
     CGRect groundRect = CGRectMake(-size.width / 2 + xPad, -size.height / 2 + xPad, size.width - 2 * xPad, size.height);

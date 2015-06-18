@@ -1,8 +1,9 @@
 #import "CourseScene.h"
-#import "Level1Node.h"
+#import "LevelNode.h"
 #import "BallNode.h"
 #import "HoleNode.h"
 #import "NextLevelOverlayNode.h"
+#import "Level1Node.h"
 
 @class Level1Node;
 
@@ -12,15 +13,17 @@
     self.backgroundColor = [UIColor blackColor];
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     [self.physicsWorld setContactDelegate:self];
-
-    Level1Node *level = [Level1Node createWithSize:self.size];
-    level.name = @"level";
-    [self addChild:level];
-    level.position = [self cameraPosition];
-
+    [self replaceLevel:Level1Node.class];
     UIGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     [view addGestureRecognizer:pinch];
     [self showNextLevelPrompt];
+}
+
+- (void)replaceLevel:(Class)klass {
+    [[self childNodeWithName:@"level"] removeFromParent];
+    LevelNode *level = [klass createWithSize:self.size];
+    [self addChild:level];
+    level.position = [self cameraPosition];
 }
 
 - (void)pinch:(UIPinchGestureRecognizer *)pinch {
@@ -42,22 +45,30 @@
         self.goToNextLevel = YES;
         nextLevelNode.alpha = 0.5;
     }
-
-    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    [ball startTouch:[touches anyObject]];
+    else if (!self.holeOver) {
+        BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+        [ball startTouch:[touches anyObject]];
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (self.holeOver) {
+        return;
+    }
+
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     [ball touchesMoved:[touches anyObject]];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (self.goToNextLevel) {
+        [self replaceLevel:Level1Node.class];
         [self hideNextLevelPrompt];
     }
-    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    [ball release:[touches anyObject]];
+    else if (!self.holeOver) {
+        BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+        [ball release:[touches anyObject]];
+    }
 }
 
 - (void)stopBallIfNecessary {
@@ -69,12 +80,12 @@
 }
 
 - (void)followBallWithCamera {
-    Level1Node *level = (Level1Node *) [self childNodeWithName:@"level"];
+    LevelNode *level = (LevelNode *) [self childNodeWithName:@"level"];
     [level runAction:[SKAction moveTo:[self cameraPosition] duration:0.1]];
 }
 
 - (CGPoint)cameraPosition {
-    Level1Node *level = (Level1Node *) [self childNodeWithName:@"level"];
+    LevelNode *level = (LevelNode *) [self childNodeWithName:@"level"];
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     double ballYChange = ball.position.y - level.initialBallPosition.y;
     return CGPointMake(self.size.width / 2,
@@ -158,6 +169,12 @@
     [nextLevelNode runAction:
             [SKAction sequence:@[
                     [SKAction moveToY:self.size.height duration:0.3],
+                    [SKAction runBlock:^{
+                        self.goToNextLevel = NO;
+                        self.holeOver = NO;
+                        self.ballFallingTowardHole = NO;
+                        self.ballInHole = NO;
+                    }],
                     [SKAction removeFromParent]
             ]]
     ];

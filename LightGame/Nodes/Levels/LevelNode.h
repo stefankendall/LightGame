@@ -2,9 +2,8 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface Level1Node : SKNode
-
+@interface LevelNode : SKNode
 @property(nonatomic) CGPoint initialBallPosition;
 
-+ (Level1Node *)createWithSize:(CGSize)size;
++ (LevelNode *)createWithSize:(CGSize)size;
 @end
