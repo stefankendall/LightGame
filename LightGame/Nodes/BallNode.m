@@ -6,12 +6,14 @@ const int BALL_RADIUS = 7;
 
 @implementation BallNode
 
+const double GROUND_LINEAR_DAMPENING = 0.8;
+
 + (instancetype)create {
     BallNode *ball = [self node];
     ball.name = @"ball";
     ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:BALL_RADIUS];
     ball.physicsBody.restitution = 0.85;
-    ball.physicsBody.linearDamping = 0.7;
+    ball.physicsBody.linearDamping = (CGFloat) GROUND_LINEAR_DAMPENING;
     ball.physicsBody.collisionBitMask = CollisionBallAndHole;
     ball.physicsBody.categoryBitMask = CategoryBall;
     ball.physicsBody.allowsRotation = NO;
@@ -65,15 +67,13 @@ const int BALL_RADIUS = 7;
     }
 
     double forcePercent = self.pullStrength;
-    if (forcePercent < 0.5) {
-        forcePercent = (forcePercent + 0.1) * forcePercent;
+    if (forcePercent >= 0.67) {
+        forcePercent = 0.67 + (forcePercent - 0.67) * 2;
     }
-    else {
-        forcePercent -= 0.25;
-    }
+
     forcePercent = forcePercent < 0.02 ? 0.02 : forcePercent;
 
-    double maxForce = 200;
+    double maxForce = 160;
     double xForce = maxForce * forcePercent * cos(self.hitAngle);
     double yForce = maxForce * forcePercent * sin(self.hitAngle);
     [self.physicsBody applyForce:CGVectorMake((CGFloat) xForce, (CGFloat) yForce)];
@@ -83,6 +83,10 @@ const int BALL_RADIUS = 7;
     double power = duration / 70;
     [self.physicsBody applyImpulse:
             CGVectorMake((CGFloat) (vector.dx * power), (CGFloat) (vector.dy * power))];
+}
+
+- (void)setDampeningForFallingTowardHole:(BOOL)falling {
+    self.physicsBody.linearDamping = (CGFloat) (falling ? 1.5 : GROUND_LINEAR_DAMPENING);
 }
 
 @end

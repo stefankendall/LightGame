@@ -25,4 +25,6 @@ extern const int BALL_RADIUS;
 - (void)hit;
 
 - (void)fallToward:(CGVector)point overDuration:(NSTimeInterval)duration;
+
+- (void)setDampeningForFallingTowardHole:(BOOL)hole;
 @end

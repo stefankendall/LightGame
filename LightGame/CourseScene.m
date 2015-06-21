@@ -130,7 +130,7 @@
     }
 
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    const int stopThreshhold = 500;
+    const int stopThreshhold = 1200;
     double speed = pow(ball.physicsBody.velocity.dy, 2) + pow(ball.physicsBody.velocity.dx, 2);
     if (speed < stopThreshhold && self.ballInHole) {
         [self holeReached];
@@ -178,5 +178,12 @@
             ]]
     ];
 }
+
+- (void)setBallFallingTowardHole:(BOOL)ballFallingTowardHole {
+    _ballFallingTowardHole = ballFallingTowardHole;
+    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
+    [ball setDampeningForFallingTowardHole: _ballFallingTowardHole];
+}
+
 
 @end
