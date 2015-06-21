@@ -21,6 +21,7 @@
 		545908BF011CBB516F091CF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 545901755FA27ED0B1660A47 /* main.m */; };
 		545909214DC93A4B16F81901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 545908F4D7187B35A3CB2F50 /* Main.storyboard */; };
 		54590A66D138C0100F4EDB5C /* AimNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 545905AA58DC90DB098A5073 /* AimNode.m */; };
+		54590D172C23F61CBCE91509 /* Level2Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 5459032CB01F2F3D813E7254 /* Level2Node.m */; };
 		54590D5FF44684EB2C65E516 /* LevelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 54590CFC2F8F9882B7D1A3D8 /* LevelNode.m */; };
 		54590D70786BF80626B72AF0 /* Level1Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 545901ED517834BD6E39BD35 /* Level1Node.m */; };
 /* End PBXBuildFile section */
@@ -47,8 +48,10 @@
 		545902E9E8F9CD9D71537686 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		545902F0FC257D8B8C66F249 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5459031ECB641482713E1990 /* Directions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Directions.h; sourceTree = "<group>"; };
+		5459032CB01F2F3D813E7254 /* Level2Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level2Node.m; sourceTree = "<group>"; };
 		545903DCC72357B3740B68B6 /* NextLevelOverlayNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLevelOverlayNode.m; sourceTree = "<group>"; };
 		5459040AAA3DE0FFA1A943A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5459040E513575F01A71CAB3 /* Level2Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2Node.h; sourceTree = "<group>"; };
 		5459047843334D040B19C6D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		545905159D121708EF93CAFF /* LightGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightGameTests.m; sourceTree = "<group>"; };
 		545905AA58DC90DB098A5073 /* AimNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AimNode.m; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				54590193361C8888B270825E /* Level1Node.h */,
 				54590CFC2F8F9882B7D1A3D8 /* LevelNode.m */,
 				545900D13135800EE06B1088 /* LevelNode.h */,
+				5459032CB01F2F3D813E7254 /* Level2Node.m */,
+				5459040E513575F01A71CAB3 /* Level2Node.h */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				545900ACCD21DAD5C4A653C4 /* NextLevelOverlayNode.m in Sources */,
 				54590D70786BF80626B72AF0 /* Level1Node.m in Sources */,
 				54590D5FF44684EB2C65E516 /* LevelNode.m in Sources */,
+				54590D172C23F61CBCE91509 /* Level2Node.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

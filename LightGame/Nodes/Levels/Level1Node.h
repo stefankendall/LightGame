@@ -4,4 +4,7 @@
 #import "LevelNode.h"
 
 @interface Level1Node : LevelNode
+@property(nonatomic) CGSize size;
+
+- (void)addGround;
 @end

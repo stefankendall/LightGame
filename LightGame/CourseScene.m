@@ -16,7 +16,6 @@
     [self replaceLevel:Level1Node.class];
     UIGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     [view addGestureRecognizer:pinch];
-    [self showNextLevelPrompt];
 }
 
 - (void)replaceLevel:(Class)klass {

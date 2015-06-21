@@ -1,16 +1,22 @@
 #import "Level1Node.h"
-#import "BallNode.h"
-#import "HoleNode.h"
-#import "AimNode.h"
 
 @implementation Level1Node
 
 + (Level1Node *)createWithSize:(CGSize)size {
     Level1Node *node = [self node];
     node.name = @"level";
+    node.size = size;
 
-    CGFloat xPad = size.width / 6;
-    CGRect groundRect = CGRectMake(-size.width / 2 + xPad, -size.height / 2 + xPad, size.width - 2 * xPad, size.height);
+    [node addGround];
+    [node addBall];
+    [node addHole];
+
+    return node;
+}
+
+- (void)addGround {
+    CGFloat xPad = self.size.width / 6;
+    CGRect groundRect = CGRectMake(-self.size.width / 2 + xPad, -self.size.height / 2 + xPad, self.size.width - 2 * xPad, self.size.height);
     SKShapeNode *ground = [SKShapeNode shapeNodeWithRect:groundRect];
     ground.position = CGPointMake(0, 0);
     [ground setFillColor:[UIColor whiteColor]];
@@ -19,21 +25,18 @@
     [ground setLineWidth:borderWidth];
     ground.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectInset(groundRect, borderWidth / 2, borderWidth / 2)];
     ground.physicsBody.dynamic = NO;
-    [node addChild:ground];
-
-    BallNode *ballNode = [BallNode create];
-    [node addChild:ballNode];
-    ballNode.position = CGPointMake(0, -size.height / 2 + xPad + 100);
-    node.initialBallPosition = ballNode.position;
-
-    AimNode *aim = [AimNode create];
-    [ballNode addChild:aim];
-
-    HoleNode *hole = [HoleNode create];
-    [node addChild:hole];
-    hole.position = CGPointMake(0, size.height / 2 - xPad);
-
-    return node;
+    [self addChild:ground];
 }
+
+- (CGPoint)initialBallPosition {
+    CGFloat xPad = self.size.width / 6;
+    return CGPointMake(0, -self.size.height / 2 + xPad + 100);
+}
+
+- (CGPoint)holePosition {
+    CGFloat xPad = self.size.width / 6;
+    return CGPointMake(0, self.size.height / 2 - xPad);
+}
+
 
 @end
