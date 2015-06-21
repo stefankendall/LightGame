@@ -6,7 +6,18 @@
 @implementation LevelNode
 
 + (LevelNode *)createWithSize:(CGSize)size {
-    return nil;
+    LevelNode *node = [self node];
+    node.name = @"level";
+    node.size = size;
+
+    [node addGround];
+    [node addBall];
+    [node addHole];
+
+    return node;
+}
+
+- (void)addGround {
 }
 
 - (void)addHole {

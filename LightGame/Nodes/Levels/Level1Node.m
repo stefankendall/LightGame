@@ -2,18 +2,6 @@
 
 @implementation Level1Node
 
-+ (Level1Node *)createWithSize:(CGSize)size {
-    Level1Node *node = [self node];
-    node.name = @"level";
-    node.size = size;
-
-    [node addGround];
-    [node addBall];
-    [node addHole];
-
-    return node;
-}
-
 - (void)addGround {
     CGFloat xPad = self.size.width / 6;
     CGRect groundRect = CGRectMake(-self.size.width / 2 + xPad, -self.size.height / 2 + xPad, self.size.width - 2 * xPad, self.size.height);

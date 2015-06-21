@@ -6,6 +6,8 @@
 
 + (LevelNode *)createWithSize:(CGSize)size;
 
+- (void)addGround;
+
 - (void)addHole;
 
 - (void)addBall;
@@ -13,4 +15,7 @@
 - (CGPoint)holePosition;
 
 - (CGPoint)initialBallPosition;
+
+@property(nonatomic) CGSize size;
+
 @end
