@@ -8,7 +8,7 @@
     HoleNode *node = [self node];
 
     int HOLE_RADIUS = BALL_RADIUS + 1;
-    int gravityRadius = HOLE_RADIUS + 10;
+    int gravityRadius = HOLE_RADIUS + 15;
     SKShapeNode *gravity = [SKShapeNode shapeNodeWithCircleOfRadius:gravityRadius];
     gravity.name = @"gravity";
     gravity.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:gravityRadius];

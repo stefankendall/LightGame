@@ -7,4 +7,6 @@
 @property(nonatomic) BOOL ballInHole;
 @property(nonatomic) BOOL holeOver;
 @property(nonatomic) BOOL goToNextLevel;
+@property(nonatomic, strong) NSArray *levels;
+@property(nonatomic) NSUInteger currentLevel;
 @end

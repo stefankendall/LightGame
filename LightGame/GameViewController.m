@@ -8,6 +8,7 @@
     SKView *skView = (SKView *) self.view;
     skView.showsFPS = YES;
     skView.ignoresSiblingOrder = YES;
+    skView.showsPhysics = YES;
     CourseScene *scene = [[CourseScene alloc] initWithSize:skView.frame.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     [skView presentScene:scene];

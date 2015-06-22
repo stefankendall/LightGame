@@ -4,6 +4,7 @@
 #import "HoleNode.h"
 #import "NextLevelOverlayNode.h"
 #import "Level1Node.h"
+#import "Level2Node.h"
 
 @class Level1Node;
 
@@ -13,7 +14,8 @@
     self.backgroundColor = [UIColor blackColor];
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     [self.physicsWorld setContactDelegate:self];
-    [self replaceLevel:Level1Node.class];
+    self.levels = @[Level1Node.class, Level2Node.class];
+    [self replaceLevel:self.levels[self.currentLevel]];
     UIGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     [view addGestureRecognizer:pinch];
 }
@@ -61,7 +63,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (self.goToNextLevel) {
-        [self replaceLevel:Level1Node.class];
+        [self replaceLevel:self.levels[++self.currentLevel % self.levels.count]];
         [self hideNextLevelPrompt];
     }
     else if (!self.holeOver) {

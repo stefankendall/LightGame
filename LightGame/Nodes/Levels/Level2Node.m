@@ -1,25 +1,24 @@
 #import "Level2Node.h"
+#import "ContactCategories.h"
 
 @implementation Level2Node
 
 - (void)addGround {
     UIBezierPath *bezierPath = UIBezierPath.bezierPath;
-    [bezierPath moveToPoint:CGPointMake(39.35, 264.66)];
-    [bezierPath addCurveToPoint:CGPointMake(108.34, 333.66) controlPoint1:CGPointMake(39.34, 264.66) controlPoint2:CGPointMake(77.47, 302.78)];
-    [bezierPath addCurveToPoint:CGPointMake(108.5, 333.5) controlPoint1:CGPointMake(108.45, 333.55) controlPoint2:CGPointMake(108.5, 333.5)];
-    [bezierPath addLineToPoint:CGPointMake(147.34, 372.34)];
-    [bezierPath addLineToPoint:CGPointMake(39.69, 480)];
-    [bezierPath addLineToPoint:CGPointMake(0.84, 441.16)];
-    [bezierPath addCurveToPoint:CGPointMake(69.5, 372.5) controlPoint1:CGPointMake(0.84, 441.16) controlPoint2:CGPointMake(38.69, 403.31)];
-    [bezierPath addCurveToPoint:CGPointMake(0.5, 303.5) controlPoint1:CGPointMake(38.63, 341.63) controlPoint2:CGPointMake(0.5, 303.5)];
-    [bezierPath addLineToPoint:CGPointMake(39.34, 264.66)];
-    [bezierPath addLineToPoint: CGPointMake(39.35, 264.66)];
+    [bezierPath moveToPoint:CGPointMake(39.35, 215.34)];
+    [bezierPath addCurveToPoint:CGPointMake(147.34, 107.66) controlPoint1:CGPointMake(39.34, 215.34) controlPoint2:CGPointMake(147.34, 107.66)];
+    [bezierPath addLineToPoint:CGPointMake(39.69, 0)];
+    [bezierPath addLineToPoint:CGPointMake(0.84, 38.84)];
+    [bezierPath addLineToPoint:CGPointMake(69.5, 107.5)];
+    [bezierPath addLineToPoint:CGPointMake(0.5, 176.5)];
+    [bezierPath addLineToPoint:CGPointMake(39.34, 215.34)];
     [bezierPath closePath];
 
     CGFloat scale = 4;
     [bezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
+    [bezierPath applyTransform:CGAffineTransformMakeTranslation(-150, -150)];
 
-    SKShapeNode *ground = [SKShapeNode shapeNodeWithPath:bezierPath.CGPath centered:YES];
+    SKShapeNode *ground = [SKShapeNode shapeNodeWithPath:bezierPath.CGPath];
     ground.position = CGPointMake(0, 0);
     [ground setFillColor:[UIColor whiteColor]];
     [ground setStrokeColor:[UIColor grayColor]];
@@ -27,6 +26,8 @@
     [ground setLineWidth:borderWidth];
     ground.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromPath:bezierPath.CGPath];
     ground.physicsBody.dynamic = NO;
+    ground.physicsBody.categoryBitMask = CategoryWall;
+    ground.physicsBody.collisionBitMask = CategoryBall;
     [self addChild:ground];
 }
 
@@ -35,7 +36,7 @@
 }
 
 - (CGPoint)holePosition {
-    return CGPointMake(0, 100);
+    return CGPointMake(0, 565);
 }
 
 @end
