@@ -12,7 +12,7 @@ const double GROUND_LINEAR_DAMPENING = 0.8;
     BallNode *ball = [self node];
     ball.name = @"ball";
     ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:BALL_RADIUS];
-    ball.physicsBody.restitution = 0.85;
+    ball.physicsBody.restitution = 0.95;
     ball.physicsBody.linearDamping = (CGFloat) GROUND_LINEAR_DAMPENING;
     ball.physicsBody.collisionBitMask = CollisionBallAndHole;
     ball.physicsBody.categoryBitMask = CategoryBall;
@@ -86,7 +86,7 @@ const double GROUND_LINEAR_DAMPENING = 0.8;
 }
 
 - (void)setDampeningForFallingTowardHole:(BOOL)falling {
-    self.physicsBody.linearDamping = (CGFloat) (falling ? 1.5 : GROUND_LINEAR_DAMPENING);
+    self.physicsBody.linearDamping = (CGFloat) (falling ? 1 : GROUND_LINEAR_DAMPENING);
 }
 
 @end

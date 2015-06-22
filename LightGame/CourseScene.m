@@ -86,9 +86,9 @@
 - (CGPoint)cameraPosition {
     LevelNode *level = (LevelNode *) [self childNodeWithName:@"level"];
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    double ballYChange = ball.position.y - level.initialBallPosition.y;
-    return CGPointMake(self.size.width / 2,
-            level.yScale * ((CGFloat) (-ballYChange) + 3 * [level calculateAccumulatedFrame].size.height / 4));
+    double ballXChange = level.initialBallPosition.x - ball.position.x;
+    return CGPointMake((CGFloat) (ball.position.x + self.size.width / 2 + 2 * ballXChange),
+            (CGFloat) ([level calculateAccumulatedFrame].size.height / 2 - ball.position.y));
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
@@ -182,7 +182,7 @@
 - (void)setBallFallingTowardHole:(BOOL)ballFallingTowardHole {
     _ballFallingTowardHole = ballFallingTowardHole;
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    [ball setDampeningForFallingTowardHole: _ballFallingTowardHole];
+    [ball setDampeningForFallingTowardHole:_ballFallingTowardHole];
 }
 
 
