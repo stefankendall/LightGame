@@ -5,6 +5,7 @@
 #import "NextLevelOverlayNode.h"
 #import "Level1Node.h"
 #import "Level2Node.h"
+#import "Level3Node.h"
 
 @class Level1Node;
 
@@ -14,7 +15,7 @@
     self.backgroundColor = [UIColor blackColor];
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     [self.physicsWorld setContactDelegate:self];
-    self.levels = @[Level1Node.class, Level2Node.class];
+    self.levels = @[Level3Node.class, Level1Node.class, Level2Node.class, Level3Node.class];
     [self replaceLevel:self.levels[self.currentLevel]];
     UIGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     [view addGestureRecognizer:pinch];
@@ -30,11 +31,12 @@
 - (void)pinch:(UIPinchGestureRecognizer *)pinch {
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     if (ball.physicsBody.velocity.dy == 0 && ball.physicsBody.velocity.dx == 0) {
-        CGFloat scale = pinch.scale;
+        CGFloat scale = 1 - (1 - pinch.scale) / 2;
         scale = scale > 1 ? 1 : scale;
         double minZoom = 0.5;
         scale = (CGFloat) (scale < minZoom ? minZoom : scale);
         [[self childNodeWithName:@"level"] setScale:scale];
+        [self followBallWithCamera];
     }
 }
 
@@ -80,9 +82,10 @@
 - (CGPoint)cameraPosition {
     LevelNode *level = (LevelNode *) [self childNodeWithName:@"level"];
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    double ballXChange = level.initialBallPosition.x - ball.position.x;
-    return CGPointMake((CGFloat) (ball.position.x + self.size.width / 2 + 2 * ballXChange),
-            (CGFloat) ([level calculateAccumulatedFrame].size.height / 2 - ball.position.y));
+    double ballXChange = (level.initialBallPosition.x - ball.position.x);
+    double ballYChange = (level.initialBallPosition.y - ball.position.y);
+    return CGPointMake((CGFloat) (ball.position.x + self.size.width / 2 + 2 * ballXChange) * level.xScale,
+            (CGFloat) (self.size.height / 2 - ball.position.y) * level.yScale);
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
@@ -183,6 +186,5 @@
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
     [ball setDampeningForFallingTowardHole:_ballFallingTowardHole];
 }
-
 
 @end

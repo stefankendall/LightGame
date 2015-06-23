@@ -21,6 +21,7 @@
 		545908BF011CBB516F091CF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 545901755FA27ED0B1660A47 /* main.m */; };
 		545909214DC93A4B16F81901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 545908F4D7187B35A3CB2F50 /* Main.storyboard */; };
 		54590A66D138C0100F4EDB5C /* AimNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 545905AA58DC90DB098A5073 /* AimNode.m */; };
+		54590BDBC5AC2E61962E1972 /* Level3Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 545906971EC759C9B4B67063 /* Level3Node.m */; };
 		54590D172C23F61CBCE91509 /* Level2Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 5459032CB01F2F3D813E7254 /* Level2Node.m */; };
 		54590D5FF44684EB2C65E516 /* LevelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 54590CFC2F8F9882B7D1A3D8 /* LevelNode.m */; };
 		54590D70786BF80626B72AF0 /* Level1Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 545901ED517834BD6E39BD35 /* Level1Node.m */; };
@@ -58,6 +59,7 @@
 		5459064D452DD2658A6F8067 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		5459067E96BB99A7A407D04B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		545906823E4A6F376B6C040A /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		545906971EC759C9B4B67063 /* Level3Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level3Node.m; sourceTree = "<group>"; };
 		5459071C7EC526DBFC56623E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		545908545BD130AC9B4EA69B /* BallNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallNode.m; sourceTree = "<group>"; };
 		545908666D7C5FF0942B75D5 /* HoleNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoleNode.h; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 		54590CC7C0128392C9195F9B /* CGPathRefHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPathRefHelper.h; sourceTree = "<group>"; };
 		54590CFC2F8F9882B7D1A3D8 /* LevelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelNode.m; sourceTree = "<group>"; };
 		54590CFE21577C1C1FE41522 /* BallNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallNode.h; sourceTree = "<group>"; };
+		54590D4706EC8740AED708CB /* Level3Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level3Node.h; sourceTree = "<group>"; };
 		54590D96F7E0E62734061CAF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		54590EB78C6C0A1CD57F1487 /* NextLevelOverlayNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextLevelOverlayNode.h; sourceTree = "<group>"; };
 		54590F33AD86281DE3E32530 /* AimNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimNode.h; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				545900D13135800EE06B1088 /* LevelNode.h */,
 				5459032CB01F2F3D813E7254 /* Level2Node.m */,
 				5459040E513575F01A71CAB3 /* Level2Node.h */,
+				545906971EC759C9B4B67063 /* Level3Node.m */,
+				54590D4706EC8740AED708CB /* Level3Node.h */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				54590D70786BF80626B72AF0 /* Level1Node.m in Sources */,
 				54590D5FF44684EB2C65E516 /* LevelNode.m in Sources */,
 				54590D172C23F61CBCE91509 /* Level2Node.m in Sources */,
+				54590BDBC5AC2E61962E1972 /* Level3Node.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
