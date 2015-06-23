@@ -72,14 +72,6 @@
     }
 }
 
-- (void)stopBallIfNecessary {
-    BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    double velocitySquared = pow(ball.physicsBody.velocity.dy, 2) + pow(ball.physicsBody.velocity.dx, 2);
-    if (velocitySquared < 40) {
-        ball.physicsBody.velocity = CGVectorMake(0, 0);
-    }
-}
-
 - (void)followBallWithCamera {
     LevelNode *level = (LevelNode *) [self childNodeWithName:@"level"];
     [level runAction:[SKAction moveTo:[self cameraPosition] duration:0.1]];
@@ -119,8 +111,6 @@
     }
 
     [self followBallWithCamera];
-    [self stopBallIfNecessary];
-
     if (self.ballFallingTowardHole) {
         BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
         SKNode *gravity = (BallNode *) [self childNodeWithName:@"//gravity"];
@@ -132,10 +122,17 @@
     }
 
     BallNode *ball = (BallNode *) [self childNodeWithName:@"//ball"];
-    const int stopThreshhold = 1200;
+    const int stopThreshold = 1200;
+    const int slowThreshold = 5000;
     double speed = pow(ball.physicsBody.velocity.dy, 2) + pow(ball.physicsBody.velocity.dx, 2);
-    if (speed < stopThreshhold && self.ballInHole) {
+    if (speed < stopThreshold && self.ballInHole) {
         [self holeReached];
+    }
+    else if (speed < slowThreshold && speed > 0) {
+        float scaleDown = 1 + (float) (currentTime - self.lastTime) * 2;
+        ball.physicsBody.velocity = CGVectorMake(
+                ball.physicsBody.velocity.dx / scaleDown,
+                ball.physicsBody.velocity.dy / scaleDown);
     }
 
     self.lastTime = currentTime;

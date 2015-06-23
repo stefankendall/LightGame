@@ -4,6 +4,4 @@
 #import "LevelNode.h"
 
 @interface Level1Node : LevelNode
-
-- (void)addGround;
 @end

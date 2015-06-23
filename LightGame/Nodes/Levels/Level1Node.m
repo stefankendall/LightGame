@@ -2,18 +2,10 @@
 
 @implementation Level1Node
 
-- (void)addGround {
+- (UIBezierPath *)groundPath {
     CGFloat xPad = self.size.width / 6;
     CGRect groundRect = CGRectMake(-self.size.width / 2 + xPad, -self.size.height / 2 + xPad, self.size.width - 2 * xPad, self.size.height);
-    SKShapeNode *ground = [SKShapeNode shapeNodeWithRect:groundRect];
-    ground.position = CGPointMake(0, 0);
-    [ground setFillColor:[UIColor whiteColor]];
-    [ground setStrokeColor:[UIColor grayColor]];
-    int borderWidth = 10;
-    [ground setLineWidth:borderWidth];
-    ground.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectInset(groundRect, borderWidth / 2, borderWidth / 2)];
-    ground.physicsBody.dynamic = NO;
-    [self addChild:ground];
+    return [UIBezierPath bezierPathWithRect:groundRect];
 }
 
 - (CGPoint)initialBallPosition {

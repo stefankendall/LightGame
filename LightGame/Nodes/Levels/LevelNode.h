@@ -14,6 +14,8 @@
 
 - (CGPoint)holePosition;
 
+- (UIBezierPath *)groundPath;
+
 - (CGPoint)initialBallPosition;
 
 @property(nonatomic) CGSize size;

@@ -3,7 +3,7 @@
 
 @implementation Level2Node
 
-- (void)addGround {
+- (UIBezierPath *)groundPath {
     UIBezierPath *bezierPath = UIBezierPath.bezierPath;
     [bezierPath moveToPoint:CGPointMake(39.35, 215.34)];
     [bezierPath addCurveToPoint:CGPointMake(147.34, 107.66) controlPoint1:CGPointMake(39.34, 215.34) controlPoint2:CGPointMake(147.34, 107.66)];
@@ -17,18 +17,7 @@
     CGFloat scale = 4;
     [bezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
     [bezierPath applyTransform:CGAffineTransformMakeTranslation(-150, -150)];
-
-    SKShapeNode *ground = [SKShapeNode shapeNodeWithPath:bezierPath.CGPath];
-    ground.position = CGPointMake(0, 0);
-    [ground setFillColor:[UIColor whiteColor]];
-    [ground setStrokeColor:[UIColor grayColor]];
-    int borderWidth = 10;
-    [ground setLineWidth:borderWidth];
-    ground.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromPath:bezierPath.CGPath];
-    ground.physicsBody.dynamic = NO;
-    ground.physicsBody.categoryBitMask = CategoryWall;
-    ground.physicsBody.collisionBitMask = CategoryBall;
-    [self addChild:ground];
+    return bezierPath;
 }
 
 - (CGPoint)initialBallPosition {

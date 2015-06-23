@@ -6,14 +6,15 @@ const int BALL_RADIUS = 7;
 
 @implementation BallNode
 
-const double GROUND_LINEAR_DAMPENING = 0.8;
+const double GROUND_LINEAR_DAMPING = 0.85;
 
 + (instancetype)create {
     BallNode *ball = [self node];
     ball.name = @"ball";
     ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:BALL_RADIUS];
     ball.physicsBody.restitution = 1;
-    ball.physicsBody.linearDamping = (CGFloat) GROUND_LINEAR_DAMPENING;
+    ball.physicsBody.friction = 0;
+    ball.physicsBody.linearDamping = (CGFloat) GROUND_LINEAR_DAMPING;
     ball.physicsBody.collisionBitMask = CollisionBallAndHole;
     ball.physicsBody.categoryBitMask = CategoryBall;
     ball.physicsBody.allowsRotation = NO;
@@ -87,7 +88,7 @@ const double GROUND_LINEAR_DAMPENING = 0.8;
 }
 
 - (void)setDampeningForFallingTowardHole:(BOOL)falling {
-    self.physicsBody.linearDamping = (CGFloat) (falling ? 1 : GROUND_LINEAR_DAMPENING);
+    self.physicsBody.linearDamping = (CGFloat) (falling ? 1 : GROUND_LINEAR_DAMPING);
 }
 
 @end
